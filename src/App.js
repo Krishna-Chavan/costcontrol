@@ -1,21 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from './Components/header/Header';
-import UI from './Components/ui/UI';
+import React from "react";
+import "./App.css";
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./Components/header/Header";
+import UI from "./Components/ui/UI";
+import { MsalProvider } from "@azure/msal-react";
 
-function App() {
+function App({ msalInstance }) {
   return (
-    // <BrowserRouter>
-    //   <Routes>
-    //     <Route path='/' element={<Header />} />
-    //     <Route path='/' element={<UI />} />
-    //   </Routes>
-    // </BrowserRouter>
-    <div>
-      <Header />
-      <UI />
-    </div>
+    <MsalProvider instance={msalInstance}>
+      <div style={{ backgroundColor: "whitesmoke" }}>
+        <Header />
+        <UI msalConfig={msalInstance} />
+      </div>
+    </MsalProvider>
   );
 }
 
